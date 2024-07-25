@@ -1,0 +1,7 @@
+langchain
+langchain-openai
+openai
+google-search-results
+wikipedia
+langchain-community
+streamlit
