@@ -14,7 +14,7 @@ os.environ["OPENAI_API_KEY"] = "sk-"+"pro"+"j-tkba43Hx"+"GdDSExw7VaMrT3BlbkFJjse
 os.environ["SERPAPI_API_KEY"] = "128387731c2c7b39d92dd4c9b004736afe1aa0e45d4e5aa545dd33b0b8a0e8b7"
 
 # Define the LLM
-llm = ChatOpenAI()
+llm = ChatOpenAI(temperature=1)
 
 # Define the prompt template
 evil_qa_prompt = PromptTemplate(
@@ -91,11 +91,11 @@ constitutional_chain = ConstitutionalChain.from_llm(
 
 # Create the memory
 memory = ConversationBufferWindowMemory(
-    k=10,  # Number of messages to store in the buffer
-    return_messages=True  # Return the messages as a list
+    k=10,  
+    return_messages=True  
 )
 
-# Load tools
+
 tools = load_tools(["serpapi", "wikipedia"], llm=llm)
 
 # Initialize the agent
@@ -104,7 +104,8 @@ agent = initialize_agent(
     tools=tools,
     agent="zero-shot-react-description",
     verbose=True,
-    memory=memory,  # Ensure memory is integrated with the agent
+    memory=memory,  
+    handle_parsing_errors=True,
 )
 
 # Define the function to process messages
