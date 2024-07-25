@@ -69,8 +69,15 @@ Ensure accuracy and relevance in the generated content.
     input_variables=["question"],
 )
 
+
+# Create the memory
+memory = ConversationBufferWindowMemory(
+    k=10,  
+    return_messages=True  
+)
+
 # Create the LLMChain
-evil_qa_chain = LLMChain(llm=llm, prompt=evil_qa_prompt)
+evil_qa_chain = LLMChain(llm=llm, prompt=evil_qa_prompt, memory=memory)
 
 # Define the ethical principle
 ethical_principle = ConstitutionalPrinciple(
@@ -87,13 +94,7 @@ constitutional_chain = ConstitutionalChain.from_llm(
     verbose=True,
 )
 
-# Create the memory
-memory = ConversationBufferWindowMemory(
-    k=10,  
-    return_messages=True  
-)
-
-
+#load tools
 tools = load_tools(["serpapi", "wikipedia"], llm=llm)
 
 # Initialize the agent
