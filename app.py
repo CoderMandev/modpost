@@ -115,8 +115,9 @@ def process_message(message):
     
     # Filter the response through ConstitutionalChain
     #filtered_response = constitutional_chain.run(question=f'repeat this  {result} verbatim ')
+    response_text = result.get('output', 'Sorry, no response generated.')
     
-    return result          #filtered_response
+    return response_text          #filtered_response
 
 # Streamlit interface
 st.title("Ethical Q&A Chat")
