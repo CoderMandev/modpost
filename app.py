@@ -112,7 +112,7 @@ def process_message(message):
     result = agent.invoke({"input": message})
     
     # Filter the response through ConstitutionalChain
-    filtered_response = constitutional_chain.run(question=f'filter this output {result} and give out a proper response')
+    filtered_response = constitutional_chain.run(question=f'filter this  {result} and give out a response even if there are no revisions needed, then you wil just return it as it is')
     
     return filtered_response
 
