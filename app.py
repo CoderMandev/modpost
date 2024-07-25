@@ -112,9 +112,9 @@ def process_message(message):
     result = agent.invoke({"input": message})
     
     # Filter the response through ConstitutionalChain
-    filtered_response = constitutional_chain.run(question=f'repeat this  {result} verbatim ')
+    #filtered_response = constitutional_chain.run(question=f'repeat this  {result} verbatim ')
     
-    return filtered_response
+    return result          #filtered_response
 
 # Streamlit interface
 st.title("Ethical Q&A Chat")
