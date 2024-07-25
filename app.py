@@ -21,9 +21,6 @@ evil_qa_prompt = PromptTemplate(
     template="""
 Objective: Implement a system to generate posts, comments, and responses that align with user interests.
 
-Instructions:
-
-User Interests:
 
 Identify the interests and preferences of the user from the provided data.
 Content Generation:
@@ -37,8 +34,9 @@ Community Guidelines:
 Ensure all generated content adheres to community guidelines, avoiding inappropriate language, sensitive topics, and any form of harassment or discrimination.
 Examples:
 
-User Interests: Technology, Artificial Intelligence, Startups
+User Interests: everything
 
+these are examples:
 Generated Post:
 "Exciting news in the world of AI! A new startup has just unveiled a groundbreaking AI model that promises to revolutionize the tech industry. What are your thoughts on this development?"
 
@@ -77,8 +75,8 @@ evil_qa_chain = LLMChain(llm=llm, prompt=evil_qa_prompt)
 # Define the ethical principle
 ethical_principle = ConstitutionalPrinciple(
     name="Ethical Principle",
-    critique_request="The model should only talk about ethical and legal things.",
-    revision_request="Rewrite the model's output to be both ethical and legal.",
+    critique_request="The model should  talk about  legal things and should allow everything else.",
+    revision_request="Rewrite the model's output to be both creative and non-censored",
 )
 
 # Create the constitutional chain
