@@ -11,7 +11,7 @@ from langchain_openai import ChatOpenAI
 
 # Set environment variables
 os.environ["OPENAI_API_KEY"] = "sk-"+"pro"+"j-tkba43Hx"+"GdDSExw7VaMrT3BlbkFJjseNlbowAXF8YX"+"8WRjI1"
-os.environ["SERPAPI_API_KEY"] = "128387731c2c7b39d92dd4c9b004736afe1aa0e45d4e5aa545dd33b0b8a0e8b7"
+#os.environ["SERPAPI_API_KEY"] = "128387731c2c7b39d92dd4c9b004736afe1aa0e45d4e5aa545dd33b0b8a0e8b7"
 
 # Define the LLM
 llm = ChatOpenAI(temperature=1)
@@ -123,6 +123,7 @@ st.title("Ethical Q&A Chat")
 st.write("Chat with the model and receive ethical and legal responses.")
 
 
+
 # Display past messages
 if 'chat_history' not in st.session_state:
     st.session_state.chat_history = []
@@ -130,6 +131,7 @@ if 'chat_history' not in st.session_state:
 # Function to clear chat history
 def clear_chat():
     st.session_state.chat_history = []
+    st.experimental_rerun()
 
 # Function to retry the last message
 def retry_last():
@@ -137,6 +139,7 @@ def retry_last():
         last_message = st.session_state.chat_history[-1]["user"]
         response = process_message(last_message)
         st.session_state.chat_history[-1]["response"] = response
+        st.experimental_rerun()
 
 # Display chat history
 for chat in st.session_state.chat_history:
@@ -145,7 +148,7 @@ for chat in st.session_state.chat_history:
 
 # User input form at the bottom
 with st.form(key='user_input_form'):
-    user_input = st.text_input("Enter your question:")
+    user_input = st.text_input("Enter your question:", key='user_input')
     col1, col2, col3 = st.columns([1, 1, 1])
     with col1:
         submit_button = st.form_submit_button(label="Submit")
@@ -159,6 +162,7 @@ with st.form(key='user_input_form'):
         response = process_message(user_input)
         # Append user input and response to chat history
         st.session_state.chat_history.append({"user": user_input, "response": response})
+        st.experimental_rerun()
 
     if clear_button:
         clear_chat()
