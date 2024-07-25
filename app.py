@@ -63,6 +63,7 @@ Maintain a positive and respectful tone.
 Avoid controversial or sensitive topics.
 Ensure accuracy and relevance in the generated content.
 
+Dont include these in your response(only include the response meant for the user):
     Question: {question}
 
     Evil answer:""",
