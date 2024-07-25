@@ -112,7 +112,7 @@ def process_message(message):
     result = agent.invoke({"input": message})
     
     # Filter the response through ConstitutionalChain
-    filtered_response = constitutional_chain.run(question=f'filter this  {result} and give out a response even if there are no revisions needed, then you wil just return it as it is')
+    filtered_response = constitutional_chain.run(question=f'repeat this  {result} verbatim ')
     
     return filtered_response
 
