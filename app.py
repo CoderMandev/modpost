@@ -163,6 +163,7 @@ with st.form(key='user_input_form'):
         response = process_message(user_input)
         # Append user input and response to chat history
         st.session_state.chat_history.append({"user": user_input, "response": response})
+        st.session_state.user_input = "" 
         st.experimental_rerun()
 
     if clear_button:
