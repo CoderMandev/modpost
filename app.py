@@ -101,7 +101,7 @@ agent = initialize_agent(
     llm=llm,
     tools=tools,
     agent="zero-shot-react-description",
-    verbose=True,
+    verbose=False,
     memory=memory,  
     handle_parsing_errors=True,
 )
@@ -120,21 +120,45 @@ def process_message(message):
 st.title("Ethical Q&A Chat")
 st.write("Chat with the model and receive ethical and legal responses.")
 
+
 # Display past messages
 if 'chat_history' not in st.session_state:
     st.session_state.chat_history = []
 
-# User input
-user_input = st.text_input("Enter your question:")
+# Function to clear chat history
+def clear_chat():
+    st.session_state.chat_history = []
 
-if st.button("Submit"):
-    if user_input:
-        response = process_message(user_input)
-        # Append user input and response to chat history
-        st.session_state.chat_history.append({"user": user_input, "response": response})
-        
+# Function to retry the last message
+def retry_last():
+    if st.session_state.chat_history:
+        last_message = st.session_state.chat_history[-1]["user"]
+        response = process_message(last_message)
+        st.session_state.chat_history[-1]["response"] = response
+
 # Display chat history
 for chat in st.session_state.chat_history:
     st.write(f"**You:** {chat['user']}")
     st.write(f"**Model:** {chat['response']}")
 
+# User input form at the bottom
+with st.form(key='user_input_form'):
+    user_input = st.text_input("Enter your question:")
+    submit_button = st.form_submit_button(label="Submit")
+    clear_button = st.form_submit_button(label="Clear")
+    retry_button = st.form_submit_button(label="Retry")
+
+# Handle form submission
+if submit_button and user_input:
+    response = process_message(user_input)
+    # Append user input and response to chat history
+    st.session_state.chat_history.append({"user": user_input, "response": response})
+
+if clear_button:
+    clear_chat()
+
+if retry_button:
+    retry_last()
+
+# Ensure the form is rendered at the bottom
+st.write("")
