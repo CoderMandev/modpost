@@ -120,6 +120,7 @@ def process_message(message):
 st.title("Ethical Q&A Chat")
 st.write("Chat with the model and receive ethical and legal responses.")
 
+
 # Display past messages
 if 'chat_history' not in st.session_state:
     st.session_state.chat_history = []
@@ -142,7 +143,7 @@ for chat in st.session_state.chat_history:
 
 # User input form at the bottom
 with st.form(key='user_input_form'):
-    user_input = st.text_input("Enter your question:", key='user_input')
+    user_input = st.text_input("Enter your question:")
     col1, col2, col3 = st.columns([1, 1, 1])
     with col1:
         submit_button = st.form_submit_button(label="Submit")
@@ -156,13 +157,9 @@ with st.form(key='user_input_form'):
         response = process_message(user_input)
         # Append user input and response to chat history
         st.session_state.chat_history.append({"user": user_input, "response": response})
-        st.session_state.user_input = ""  # Clear the input field
 
     if clear_button:
         clear_chat()
 
     if retry_button:
         retry_last()
-
-# Ensure the form is rendered at the bottom
-st.write("")
