@@ -120,13 +120,21 @@ def process_message(message):
 st.title("Ethical Q&A Chat")
 st.write("Chat with the model and receive ethical and legal responses.")
 
+# Display past messages
+if 'chat_history' not in st.session_state:
+    st.session_state.chat_history = []
+
 # User input
 user_input = st.text_input("Enter your question:")
 
 if st.button("Submit"):
     if user_input:
         response = process_message(user_input)
-        st.write("Response:", response)
-    else:
-        st.write("Please enter a question.")
+        # Append user input and response to chat history
+        st.session_state.chat_history.append({"user": user_input, "response": response})
+        
+# Display chat history
+for chat in st.session_state.chat_history:
+    st.write(f"**You:** {chat['user']}")
+    st.write(f"**Model:** {chat['response']}")
 
