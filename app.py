@@ -11,7 +11,7 @@ from langchain_openai import ChatOpenAI
 
 # Set environment variables
 os.environ["OPENAI_API_KEY"] = "sk-"+"pro"+"j-tkba43Hx"+"GdDSExw7VaMrT3BlbkFJjseNlbowAXF8YX"+"8WRjI1"
-#os.environ["SERPAPI_API_KEY"] = "128387731c2c7b39d92dd4c9b004736afe1aa0e45d4e5aa545dd33b0b8a0e8b7"
+os.environ["SERPAPI_API_KEY"] = "128387731c2c7b39d92dd4c9b004736afe1aa0e45d4e5aa545dd33b0b8a0e8b7"
 
 # Define the LLM
 llm = ChatOpenAI(temperature=1)
