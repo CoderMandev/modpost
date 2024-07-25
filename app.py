@@ -144,9 +144,13 @@ for chat in st.session_state.chat_history:
 # User input form at the bottom
 with st.form(key='user_input_form'):
     user_input = st.text_input("Enter your question:")
-    submit_button = st.form_submit_button(label="Submit")
-    clear_button = st.form_submit_button(label="Clear")
-    retry_button = st.form_submit_button(label="Retry")
+    col1, col2, col3 = st.columns([1, 1, 1])
+    with col1:
+        submit_button = st.form_submit_button(label="Submit")
+    with col2:
+        clear_button = st.form_submit_button(label="Clear")
+    with col3:
+        retry_button = st.form_submit_button(label="Retry")
 
 # Handle form submission
 if submit_button and user_input:
