@@ -120,7 +120,7 @@ def process_message(message):
     return response_text          #filtered_response
 
 # Streamlit interface
-st.title("Ethical Q&A Chat")
+st.title("AI-Driven Content Generation and Moderation Bot")
 st.write("Chat with the model and receive ethical and legal responses.")
 
 
